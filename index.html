@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Stock Portfolio Tracker</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .container {
+            background-color: white;
+            width: 400px;
+            margin: auto;
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        input {
+            padding: 8px;
+            margin: 5px;
+            width: 80%;
+        }
+
+        button {
+            padding: 10px;
+            width: 85%;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+
+        .result {
+            margin-top: 15px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+    <h2>Stock Portfolio Tracker</h2>
+
+    <input type="text" id="stockName" placeholder="Enter stock name (AAPL, TSLA)">
+    <input type="number" id="quantity" placeholder="Enter quantity">
+
+    <button onclick="calculateInvestment()">Calculate</button>
+
+    <p class="result" id="output"></p>
+</div>
+
+<script>
+    // Hardcoded stock prices (dictionary)
+    const stockPrices = {
+        AAPL: 180,
+        TSLA: 250,
+        MSFT: 320,
+        AMZN: 140,
+        GOOG: 130
+    };
+
+    function calculateInvestment() {
+        let stock = document.getElementById("stockName").value.toUpperCase();
+        let quantity = Number(document.getElementById("quantity").value);
+
+        if (!stockPrices[stock] || quantity <= 0) {
+            document.getElementById("output").textContent =
+                "Invalid stock name or quantity.";
+            return;
+        }
+
+        let totalValue = stockPrices[stock] * quantity;
+
+        document.getElementById("output").textContent =
+            "Total investment value: $" + totalValue;
+    }
+</script>
+
+</body>
+</html>
